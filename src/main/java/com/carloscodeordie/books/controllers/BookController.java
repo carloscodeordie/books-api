@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController("/api/books")
+@RestController(value = "/api")
 public class BookController {
 
     private List<Book> books = new ArrayList<Book>();
@@ -24,7 +24,7 @@ public class BookController {
         ));
     }
 
-    @GetMapping
+    @GetMapping(value = "/books")
     public List<Book> fetchBooks() {
         return books;
     }
