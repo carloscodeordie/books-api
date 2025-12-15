@@ -45,13 +45,11 @@ public class BookController {
 
     @PostMapping("/books")
     public void createBook(@RequestBody Book newBook) {
-        for (Book book : books) {
-            // Validates if the book is already added in the books list
-            if (book.getTitle().equalsIgnoreCase(newBook.getTitle())) {
-                return;
-            }
-        }
+        boolean isNewBook = books.stream()
+                        .noneMatch(book -> book.getTitle().equalsIgnoreCase(newBook.getTitle()));
 
-        books.add(newBook);
+        if (isNewBook) {
+            books.add(newBook);
+        }
     }
 }
